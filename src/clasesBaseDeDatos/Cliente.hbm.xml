@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 14 ene 2025, 16:15:44 by Hibernate Tools 5.6.15.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="ventacoches" name="clasesBaseDeDatos.Cliente" optimistic-lock="none" table="cliente">
+        <id name="idCliente" type="int">
+            <column name="id_cliente"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="dni" type="string">
+            <column length="9" name="dni" not-null="true" unique="true"/>
+        </property>
+        <property name="nombre" type="string">
+            <column length="50" name="nombre" not-null="true"/>
+        </property>
+        <property name="direccion" type="string">
+            <column length="50" name="direccion" not-null="true"/>
+        </property>
+        <property name="ciudad" type="string">
+            <column length="50" name="ciudad" not-null="true"/>
+        </property>
+        <property name="telefono" type="string">
+            <column length="50" name="telefono" not-null="true"/>
+        </property>
+        <property name="email" type="string">
+            <column length="50" name="email" not-null="true"/>
+        </property>
+        <property name="edad" type="java.lang.Byte">
+            <column name="edad"/>
+        </property>
+        <property name="sexo" type="string">
+            <column length="6" name="sexo"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="ventas" table="venta">
+            <key>
+                <column name="cliente" not-null="true"/>
+            </key>
+            <one-to-many class="clasesBaseDeDatos.Venta"/>
+        </set>
+    </class>
+</hibernate-mapping>

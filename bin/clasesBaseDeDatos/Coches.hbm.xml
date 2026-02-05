@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 14 ene 2025, 16:15:44 by Hibernate Tools 5.6.15.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="ventacoches" name="clasesBaseDeDatos.Coches" optimistic-lock="none" table="coches">
+        <id name="idCoche" type="int">
+            <column name="id_coche"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="marca" type="string">
+            <column length="30" name="Marca" not-null="true"/>
+        </property>
+        <property name="modelo" type="string">
+            <column length="30" name="Modelo" not-null="true"/>
+        </property>
+        <property name="color" type="string">
+            <column length="30" name="Color" not-null="true"/>
+        </property>
+        <property name="matricula" type="string">
+            <column length="7" name="Matricula" not-null="true" unique="true"/>
+        </property>
+        <property name="plazas" type="byte">
+            <column name="plazas" not-null="true"/>
+        </property>
+        <property name="extras" type="string">
+            <column length="200" name="Extras"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="ventas" table="venta">
+            <key>
+                <column name="coche" not-null="true"/>
+            </key>
+            <one-to-many class="clasesBaseDeDatos.Venta"/>
+        </set>
+    </class>
+</hibernate-mapping>
